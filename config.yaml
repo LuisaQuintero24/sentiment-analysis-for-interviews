@@ -1,0 +1,18 @@
+audio:
+  whisper_model: "small"  # tiny, base, small, medium, large
+  sample_rate: 16000
+  min_segment_duration: 0.1
+
+analysis:
+  question_model: "facebook/bart-large-mnli"
+  default_language: "auto"  # auto, en, es
+
+thresholds:
+  question_confidence: 0.5
+
+output:
+  format: "json"
+  include_probabilities: true
+
+logging:
+  level: "INFO"  # DEBUG, INFO, WARNING, ERROR
