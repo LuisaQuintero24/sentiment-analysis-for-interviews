@@ -1,3 +1,30 @@
+
+""" Generates interview analysis reports and saves them to JSON files.
+    This module provides functionality to compile analyzed interview segments
+    into a comprehensive report, including sentiment and emotion distributions,
+    and to save the report in a structured JSON format.
+    
+    Args:
+        segments (list[AnalyzedSegmrnt]): List of analyzed interview segments.
+        duration_seconds (float): Total duration of the interview in seconds.
+        language (str): Language of the interview.
+        interview_id (str): Unique identifier for the interview.
+    
+    Returns: 
+        InterviewAnalysis: Compiled analysis report including metadata and statistics.
+    
+    Raises:
+        None. Returns an empty report if segments list is empty
+    
+    Note:
+        - Sentiment and emotion distributions are calculated from the segments.
+        - Average sentiment score is computed for all statements.
+        - Dominant sentiment and emotion labels are identified based on frequency.
+        - The report is saved as a JSON file at the specified output path.
+
+"""
+
+
 import json
 import logging
 from collections import Counter
@@ -11,6 +38,7 @@ from src.models.interview import (
     InterviewReport,
     SentimentDistribution,
 )
+
 
 logger = logging.getLogger(__name__)
 

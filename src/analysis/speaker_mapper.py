@@ -5,12 +5,33 @@ from src.models.segment import TranscribedSegment
 
 logger = logging.getLogger(__name__)
 
+""" Module for mapping speakers in interview transcripts.
+    Provides functions to map speakers to roles based on frequency.
+    
+    Args: 
+        segments (list[TranscribedSegment]): list of transcribed segments with speaker information
+    
+    Returns: 
+        dict¨[str, str]: mapping of original speaker names to roles ("Interviewer", "Interviewee")
+        
+    Raises: 
+        None. Assumes valid input segments.
+    
+    Note:
+        - Maps least frequent speaker to "Interviewer" and others to "Interviewee"
+        - Uses Counter to count ocurrences of each speaker
+        - Logs mapping decisions for transparency
+        - If no segments provided, returns empty mapping. 
+        
+    Example:
+        >>> segments = ¨[TranscribedSegment(speaker="Alice", text="..."), TranscribedSegment(speaker=" Bob", text="..."), TranscribedSegment(speaker="Alice", text="...")]
+        >>> speaker_map = map_speakers(segments)
+        >>> print(speaker_map)"""
+
+
+
 
 def map_speakers(segments: list[TranscribedSegment]) -> dict[str, str]:
-    """
-    Map speaker codes to roles based on speaking frequency.
-    The speaker with fewer segments is assumed to be the Interviewer.
-    """
     if not segments:
         return {}
 

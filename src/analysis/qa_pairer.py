@@ -1,3 +1,30 @@
+
+"""Pairs interview questions with their corresponding answers.
+    
+    This function iterates through a list of analyzed segments and links questions
+    (identified by "Interviewer" role) with the answers that follow them. It updates
+    the `paired_with` attribute of both questions and answers to establish the
+    relationship between them.
+
+    Args:
+         A list of AnalyzedSegment objects containing interview data with
+        speaker roles and segment classifications.
+
+    Returns:
+        The same list of segments with updated `paired_with` attributes that link
+        questions to their first answer and answers to their corresponding question.
+
+    Raises:
+        None. Returns the original segments list if it's empty.
+
+    Note:
+        - Questions are identified by speaker_role="Interviewer" and role="question"
+        - Answers are matched by finding consecutive non-Interviewer segments
+        - Empty answer text is skipped during pairing
+        - Questions are linked to their first non-empty answer
+        - Multiple answers can be paired to a single question
+    """
+
 import logging
 
 from src.models.analysis import AnalyzedSegment
@@ -6,11 +33,7 @@ logger = logging.getLogger(__name__)
 
 
 def pair_questions_answers(segments: list[AnalyzedSegment]) -> list[AnalyzedSegment]:
-    """
-    Pair Interviewer questions with Interviewee answers.
-    Each Interviewer question pairs with all subsequent Interviewee segments
-    until the next Interviewer segment.
-    """
+
     if not segments:
         return segments
 

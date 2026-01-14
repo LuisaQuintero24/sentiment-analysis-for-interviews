@@ -1,14 +1,25 @@
 """
-Interview Audio Analysis Pipeline
+Main script to run the interview analysis pipeline.
+Sets up the environment, cleans previous runs, and executes the pipeline, 
+logging key information and results.
+Handles exceptions and ensures proper logging throughout the process.
 
-Analyzes interview audio files to extract:
-- Speaker diarization (who spoke when)
-- Transcription (what was said)
-- Question/statement classification
-- Sentiment and emotion analysis
+Args: 
+    None. The script is executed directly.
 
-Usage:
-    python main.py
+Returns:
+    Exit code 0 on success, 1 on failure.
+
+Raises:
+    None. All exceptions are caugth and logged.
+
+Note:
+    - The script uses rich for console output and logging for detailed logs.
+    - Cleans up previous run files before starting a new pipeline execution.
+    - Configures environment settings such as HF token and FFmpeg path.
+    - Logs key statistics from the pipeline upon successful completion.
+    - Handles warnings related to FP16 in CPU environments.
+
 """
 
 import sys

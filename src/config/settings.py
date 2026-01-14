@@ -1,3 +1,29 @@
+""" Configuration settings for the audio processing and analysis pipeline
+
+Args:
+    audio: settings related to audio processing and transcription
+    analysis: settings related to next analysis tasks
+    thresholds: confidence thresholds for various classifiers
+    output: settings for output formatting and content
+    logging: settings for logging verbosity and format
+
+Returns:
+    Settings: dataclass encapsulating all configuration settings
+
+Raises:
+    None. Uses default values if no config file is found.
+
+Note:
+    - Loads settings from config.yaml if present
+    - Uses pydantic for data validation and default values
+    - Caches settings instance for performance
+
+Example:
+    >>> settings = get_settings()
+    >>> print( settings.audio.whisper_model)
+
+   """
+
 import logging
 from pathlib import Path
 from functools import lru_cache

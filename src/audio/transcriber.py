@@ -1,3 +1,32 @@
+"""
+    Transcribe audio segments using OpenAI's whisper model.
+    
+    Args:
+        segments (list[Segment]): List of segments with start, end times and speaker labels,
+        clip_paths (list¨[Path]): list of paths to audio clips corresponding to segments 
+        model_name (str | None): Whisper model name to use. If None, uses default from settings.
+        language (str | None): Language code for transcription. If None or "auto", detects language
+        
+    Returns:
+        tuple[list[TranscribedSegment], str]: list of transcribed segments and detected language code.
+        
+    Raises:
+        None. Assumes valid input segments and clip paths.
+    
+    Note:
+        - Uses OpenAI's whisper for transcription
+        - Auto-detects language from first substantial clip if language is None or "auto"
+        - Skips transcription for clips shorter than minimum duration from settings
+        - Logs key steps for transparency
+        
+    Example:
+        >>> segments = [Segment(start=0.0, end=5,0, speaker="Speaker 1"), Segment(start=5.0, end=10.0, speaker="Speaker 2"
+        >>> clip_paths = [Path("/path/to/part_0.wav"), Path("/path/to/part_1.wav")]
+        >>> transcribed_segments, detected_lang = transcribe_segments(segments, clip_paths, model_name="base", language="auto")
+        >>> for seg in transcribed_segments:
+        >>>     print(seg)
+"""
+
 import logging
 from pathlib import Path
 
@@ -18,17 +47,11 @@ def detect_language(text: str) -> str:
         return "en"
 
 
-def transcribe_segments(
-    segments: list[Segment],
-    clip_paths: list[Path],
-    model_name: str | None = None,
+def transcribe_segments(segments: list[Segment],clip_paths: list[Path],
+model_name: str | None = None,
     language: str | None = None,
 ) -> tuple[list[TranscribedSegment], str]:
-    """
-    Transcribe audio clips using Whisper.
 
-    Returns tuple of (transcribed_segments, detected_language).
-    """
     settings = get_settings()
     model_name = model_name or settings.audio.whisper_model
     min_duration = settings.audio.min_segment_duration

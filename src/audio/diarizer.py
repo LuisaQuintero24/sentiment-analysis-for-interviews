@@ -1,3 +1,30 @@
+"""Speaker diarization using pyannote audio pipeline.
+    Perform speaker diarization on the given audio file using pyannote.
+
+    Args:
+        audio_path (Path): Path to the input audio file.
+        hf_token (str | None): Hugging Face token for authentication. If None, reads from HF_TOKEN env variable.
+        device (str): Device to run the model on ( "cpu" or "cuda)
+
+    Returns: 
+        list[Segment]: list of diarized segments with start, end times and speaker labels.
+
+    Raises:
+        ValueError: if HF token is not provided and not found in environment
+
+    Note:
+        - Uses pyannote's speaker-diarization-3.1 pipeline
+        - Loads audio using soundfile and converts to torch tensor
+        -Output segments are rounded to 3 decimal places
+        - Logs key steps for transparency
+
+    Example:
+        >>> audio_path = Path(" /path/to/audio.wav")
+        >>> segments = diarize_audio(audio_path, hf_token="your_hf_token", device= "cuda"
+        >>> for seg in segments:
+        >>>   print(seg)
+"""
+
 import logging
 import os
 from pathlib import Path
@@ -11,16 +38,7 @@ from src.models.segment import Segment
 logger = logging.getLogger(__name__)
 
 
-def diarize_audio(
-    audio_path: Path,
-    hf_token: str | None = None,
-    device: str = "cpu",
-) -> list[Segment]:
-    """
-    Perform speaker diarization on an audio file.
-
-    Returns a list of Segment objects with start, end, and speaker.
-    """
+def diarize_audio(audio_path: Path,hf_token: str | None = None,device: str = "cpu",) -> list[Segment]:
     token = hf_token or os.getenv("HF_TOKEN")
     if not token:
         raise ValueError("HF_TOKEN not found. Set it via environment or pass hf_token.")

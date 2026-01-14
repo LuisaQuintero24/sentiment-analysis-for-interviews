@@ -1,3 +1,31 @@
+""" Pipeline runner module for orchestrating the audio processing workflow.
+    This module defines the main function `run_pipeline` which executes a series of
+    steps to process interview audio data, including conversion, diarization,
+    segmentation, transcription, analysis and report generation.
+    
+    Args:
+        raw_dir (Path): Directory containing raw audio files.
+        audio_wav (Path): Path to save the converted WAV audio file.
+        parts_dir (Path): Directory to save segmented audio clips.
+        output_path (Path): Path to save the final analysis report.
+        device (str): Device to use for processing (e.g., "cpu" or "cuda").
+        interview_id (str): Unique identifier for the interview.
+        
+    Returns:
+           The final analysis report object or None if any step fails.
+        
+    Raises:
+        None. Each step handles its own errors and returns None if it fails.
+    
+    Note:
+        - The pipeline consists of multiple phases, each responsible for a specific task.
+        - Progress is tracked and reported for each phase.
+        - The final analysis report is saved to the specified output path.
+        - The function returns None if any critical step fails.
+        - The pipeline is designed to be modular and extensible for future enhancements.
+"""
+
+
 from pathlib import Path
 
 from src.audio.converter import ensure_wav_audio
@@ -13,7 +41,6 @@ from src.models.analysis import AnalyzedSegment, SentimentResult, EmotionResult
 from src.models.interview import InterviewAnalysis
 from src.output.report_generator import generate_report, save_analysis
 from src.utils.progress import pipeline_progress
-
 
 def run_pipeline(
     raw_dir: Path,

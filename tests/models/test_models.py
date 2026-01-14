@@ -81,7 +81,7 @@ class TestTranscribedSegment:
         """Test unicode text is handled correctly."""
         seg = TranscribedSegment(
             start=0.0, end=1.5, speaker="SPEAKER_00",
-            text="¿Cómo estás? 你好 🎉", language="mixed"
+            text="¿Cómo estás? 你好 ", language="mixed"
         )
         assert "¿Cómo" in seg.text
         assert "你好" in seg.text

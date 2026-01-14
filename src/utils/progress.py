@@ -1,3 +1,28 @@
+"""This module provides a progress tracking utility for monitoring the 
+various phases of the interview processing pipeline. It defines a 
+`PipelineProgress` class that uses the `rich` library to display progress bars
+and status updates in the console.
+
+Args:
+    None. The module defines classes and functions for use in other parts of the application.
+    
+Returns:
+    None. The module provides functionality for tracking and displaying progress.
+
+Raises:
+    None. The module is designed to be used without raising exceptions.
+    
+Note:
+    - The `PipelineProgress` class can be used as a context manager to automatically
+    handle the start and stop of the progress display.
+    
+    - each phase of the pipeline can be started, advanced and completed with dedicated methods.
+    
+    - The `pipeline_progress` function provides a convenient way to use the `PipelineProgress` class
+     within a `with` statement.
+    
+    """
+
 from contextlib import contextmanager
 from typing import Generator
 

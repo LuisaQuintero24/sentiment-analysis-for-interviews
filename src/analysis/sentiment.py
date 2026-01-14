@@ -1,3 +1,28 @@
+"""" Module for sentiment and emotion analysis using pysentimiento analyzers.
+Provides functions to nalyze sentiment and emotion of text in specified languages
+
+Args:
+    text (str): the input text to be analyzed
+    lang(str): the language code for the text (default  is "es" for Spanish)
+
+Returns:
+    SentimentResult: dataclass containing sentiment analysis results
+    EmotionResult: dataclass containing emotion anlysis results
+
+Raises
+    None. Assumes valid input text and language codes.
+
+Note:
+    - Uses Lru_cache to cache analyzer instances for performance
+    - Supports multiple languages as supported by pysentimiento
+    - SentimentResult and EmotionResult include label, score and probabilities
+
+Example:
+
+    >>> sentiment, emotion = analyze_text("Estoy muy feliz hoy", lang="es")
+    print(sentiment, emotion)
+"""
+
 import logging
 from functools import lru_cache
 

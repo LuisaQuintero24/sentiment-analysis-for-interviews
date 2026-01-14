@@ -1,9 +1,37 @@
+""" Module for converting various audio formats to WAV. 
+    Provides functions to find audio files in supported formats
+    and convert them to WAV ussing pydub.
+
+    Args: 
+        raw_dir (Path): directory to search for audio files
+        audio_wav (Path): target path for converted WAV file
+
+    Returns:
+        bool: True if conversion successful or WAV already exists, False otherwise. 
+
+    Raises: 
+        None. Handles errors internally and logs them.
+
+    Note:
+        - Supports multiple audio formats defined in SUPPORTED_FORMATS
+        - uses pydub for audio conversion
+        - Creates taeget directories if they do not exist
+        - Logs key steps and errors for transparency
+        - If no supported audio file is found, logs an error with supported formats
+
+        Example:
+        >>> raw_dir = Path("/path/to/raw_audio")
+        >>> audio_wav = Path("/path/to/conveted_audio/audio.wav")
+        >>> success = ensure_wav_audio(raw_dir, audio_wav)
+        >>> print(success) # True if conversion succeeded or WAV exists
+        """
+
 import logging
 from pathlib import Path
-
 from pydub import AudioSegment
 
 logger = logging.getLogger(__name__)
+
 
 SUPPORTED_FORMATS = {
     ".mp3": "mp3",
@@ -27,7 +55,8 @@ def find_audio_file(raw_dir: Path) -> Path | None:
 
 
 def convert_to_wav(source_path: Path, wav_path: Path) -> bool:
-    try:
+    
+    try:                                                                                                            
         ext = source_path.suffix.lower()
         fmt = SUPPORTED_FORMATS.get(ext)
         if not fmt:

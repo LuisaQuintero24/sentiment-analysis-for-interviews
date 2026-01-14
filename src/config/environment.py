@@ -1,5 +1,3 @@
-"""Environment configuration for the audio processing pipeline."""
-
 import os
 from pathlib import Path
 
@@ -16,25 +14,43 @@ def setup_hf_token():
 
     Uses HF_TOKEN from environment variables.
     Get your token at: https://huggingface.co/settings/tokens
+    
+    Raises:
+        ValueError: if HF_TOKEN is not set in environment variables.
+        
+    Note:
+        - Essential for accessing HuggingFace models
+        - Loads token from environment variable HF_TOKEN
+        - Provides user guidance if token is missing
+    
     """
     hf_token = os.environ.get("HF_TOKEN")
     if not hf_token:
         raise ValueError(
-            "HF_TOKEN environment variable is required. "
+            "HF_TOKEN environment variable is required."
             "Get your token at https://huggingface.co/settings/tokens"
         )
     print(" HF_TOKEN configurado")
 
 
 def setup_ffmpeg(script_dir: Path):
-    """
-    Add FFmpeg to PATH for pydub and whisper.
-
-    Parameters
-    ----------
-    script_dir : Path
-        Root directory of the project
-    """
+    """ Metod to set up FFmpeg path for audio processing.
+    Args:
+        script_dir (Path): Base directory of the script.
+    
+    Returns: 
+        None. Sets FFmpeg path in environment variables.
+    
+    Raises: 
+        None. Warns if FFmpeg path is not found.
+    
+    Note:
+        - FFmpeg is required for audio format conversions
+        - Assumes FFmpeg is located in 'engines/ffmpeg-<version>/bin' relative to script_dir
+        - Updates system PATH to include FFmpeg binaries
+        - Provides user feedback on setup status
+        """    
+        
     ffmpeg_path = (
         script_dir / "engines" / "ffmpeg-2026-01-05-git-2892815c45-full_build" / "bin"
     )
@@ -46,13 +62,5 @@ def setup_ffmpeg(script_dir: Path):
 
 
 def setup_environment(script_dir: Path):
-    """
-    Configure all necessary environment variables.
-
-    Parameters
-    ----------
-    script_dir : Path
-        Root directory of the project
-    """
     setup_hf_token()
     setup_ffmpeg(script_dir)

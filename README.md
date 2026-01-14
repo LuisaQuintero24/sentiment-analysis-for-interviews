@@ -28,8 +28,7 @@ cd sentiment-main
 
 # Create virtual environment
 python -m venv venv
-source venv/bin/activate  # Linux/Mac
-# or
+
 .\venv\Scripts\activate  # Windows
 
 # Install dependencies
@@ -40,11 +39,6 @@ pip install -e .
 
 **Option A: System installation**
 ```bash
-# Ubuntu/Debian
-sudo apt install ffmpeg
-
-# macOS
-brew install ffmpeg
 
 # Windows (using chocolatey)
 choco install ffmpeg
@@ -68,9 +62,6 @@ choco install ffmpeg
 
 4. Set the token:
 ```bash
-# Linux/Mac
-export HF_TOKEN="your_token_here"
-
 # Windows PowerShell
 $env:HF_TOKEN = "your_token_here"
 
@@ -131,75 +122,6 @@ logging:
 
 For most interviews, `small` provides a good balance.
 
-## Output Format
-
-The pipeline generates `sentiment_analysis.json`:
-
-```json
-{
-  "interview_id": "interview_001",
-  "metadata": {
-    "date": "2025-01-11",
-    "participants": ["Interviewer", "Interviewee"],
-    "duration_seconds": 342.5,
-    "language": "es"
-  },
-  "segments": [
-    {
-      "segment_id": 1,
-      "speaker": "SPEAKER_00",
-      "speaker_role": "Interviewer",
-      "start": 0.5,
-      "end": 3.2,
-      "text": "Tell me about your experience",
-      "language": "en",
-      "role": "question",
-      "sentiment": null,
-      "emotion": null,
-      "paired_with": 2
-    },
-    {
-      "segment_id": 2,
-      "speaker": "SPEAKER_01",
-      "speaker_role": "Interviewee",
-      "start": 3.5,
-      "end": 15.8,
-      "text": "I've been working in this field for five years...",
-      "language": "en",
-      "role": "statement",
-      "sentiment": {
-        "label": "POS",
-        "score": 0.85,
-        "probabilities": {"POS": 0.85, "NEG": 0.05, "NEU": 0.10}
-      },
-      "emotion": {
-        "label": "joy",
-        "score": 0.72,
-        "probabilities": {"joy": 0.72, "others": 0.15, ...}
-      },
-      "paired_with": 1
-    }
-  ],
-  "report": {
-    "total_segments": 45,
-    "total_questions": 20,
-    "total_statements": 25,
-    "sentiment_distribution": {
-      "POS": {"count": 15, "percentage": 60.0},
-      "NEG": {"count": 3, "percentage": 12.0},
-      "NEU": {"count": 7, "percentage": 28.0}
-    },
-    "emotion_distribution": {
-      "joy": {"count": 10, "percentage": 40.0},
-      "others": {"count": 8, "percentage": 32.0},
-      ...
-    },
-    "average_sentiment_score": 0.68,
-    "dominant_sentiment": "POS",
-    "dominant_emotion": "joy"
-  }
-}
-```
 
 ## Project Structure
 

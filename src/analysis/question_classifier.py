@@ -1,3 +1,27 @@
+""" Moduke for classifying text segments as questions or statements.
+   Provides functions to classify text using a zero-shot classification model.
+
+   Args:
+       text: the input text segment to classify
+
+    Returns:
+        tuple: a tuple containing the classified role("question", "statement")
+        and the confidence score.
+
+    Raises:
+        None. Assumes valid input text.
+
+    Note:
+        - Uses transformers pipeline for zero-shot classification
+        - Caches classifier instances for performance
+        - Classification threshold is configurable via settings
+        - Default candidate labels are "question" and "statement"
+
+    Example:
+        >>> role, score = classify_question("¿Cómo te llamas?"
+        >>> print(role, score)"""
+
+
 import logging
 from functools import lru_cache
 
@@ -6,6 +30,7 @@ from transformers import pipeline
 from src.config.settings import get_settings
 
 logger = logging.getLogger(__name__)
+
 
 CANDIDATE_LABELS = ["question", "statement"]
 
