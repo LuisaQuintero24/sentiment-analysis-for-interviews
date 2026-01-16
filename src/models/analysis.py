@@ -37,8 +37,7 @@ Example:
             paired_with=None
         )
         
-        print(analyzed_segment)
-        
+        print
     """
 
 class SentimentResult(BaseModel):

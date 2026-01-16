@@ -1,17 +1,17 @@
 """
 Main script to run the interview analysis pipeline.
-Sets up the environment, cleans previous runs, and executes the pipeline, 
+Sets up the environment, cleans previous runs, and executes the pipeline,
 logging key information and results.
 Handles exceptions and ensures proper logging throughout the process.
 
-Args: 
+Args:
     None. The script is executed directly.
 
 Returns:
     Exit code 0 on success, 1 on failure.
 
 Raises:
-    None. All exceptions are caugth and logged.
+    None. All exceptions are caught and logged.
 
 Note:
     - The script uses rich for console output and logging for detailed logs.

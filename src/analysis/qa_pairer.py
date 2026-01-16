@@ -1,6 +1,6 @@
 
 """Pairs interview questions with their corresponding answers.
-    
+
     This function iterates through a list of analyzed segments and links questions
     (identified by "Interviewer" role) with the answers that follow them. It updates
     the `paired_with` attribute of both questions and answers to establish the

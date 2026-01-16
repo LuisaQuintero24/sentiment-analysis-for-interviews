@@ -5,13 +5,13 @@ and status updates in the console.
 
 Args:
     None. The module defines classes and functions for use in other parts of the application.
-    
+
 Returns:
     None. The module provides functionality for tracking and displaying progress.
 
 Raises:
     None. The module is designed to be used without raising exceptions.
-    
+
 Note:
     - The `PipelineProgress` class can be used as a context manager to automatically
     handle the start and stop of the progress display.
@@ -20,7 +20,6 @@ Note:
     
     - The `pipeline_progress` function provides a convenient way to use the `PipelineProgress` class
      within a `with` statement.
-    
     """
 
 from contextlib import contextmanager

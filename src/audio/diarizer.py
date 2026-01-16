@@ -4,9 +4,9 @@
     Args:
         audio_path (Path): Path to the input audio file.
         hf_token (str | None): Hugging Face token for authentication. If None, reads from HF_TOKEN env variable.
-        device (str): Device to run the model on ( "cpu" or "cuda)
+        device (str): Device to run the model on ("cpu" or "cuda").
 
-    Returns: 
+    Returns:
         list[Segment]: list of diarized segments with start, end times and speaker labels.
 
     Raises:
@@ -38,7 +38,7 @@ from src.models.segment import Segment
 logger = logging.getLogger(__name__)
 
 
-def diarize_audio(audio_path: Path,hf_token: str | None = None,device: str = "cpu",) -> list[Segment]:
+def diarize_audio(audio_path: Path, hf_token: str | None = None, device: str = "cpu",) -> list[Segment]:
     token = hf_token or os.getenv("HF_TOKEN")
     if not token:
         raise ValueError("HF_TOKEN not found. Set it via environment or pass hf_token.")

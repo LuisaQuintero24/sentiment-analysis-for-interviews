@@ -10,10 +10,10 @@
         output_path (Path): Path to save the final analysis report.
         device (str): Device to use for processing (e.g., "cpu" or "cuda").
         interview_id (str): Unique identifier for the interview.
-        
+
     Returns:
            The final analysis report object or None if any step fails.
-        
+
     Raises:
         None. Each step handles its own errors and returns None if it fails.
     
@@ -75,8 +75,7 @@ def run_pipeline(
         transcribed, detected_lang = transcribe_segments(
             segments,
             clip_paths,
-            language=settings.analysis.default_language,
-        )
+            language=settings.analysis.default_language,)
         progress.complete_phase("Transcription")
 
         lang = detected_lang if detected_lang in ["es", "en", "it", "pt"] else "en"
@@ -121,9 +120,7 @@ def run_pipeline(
                         "anger": 0.008,
                         "surprise": 0.008,
                         "disgust": 0.008,
-                        "fear": 0.008,
-                    },
-                )
+                        "fear": 0.008,},)
             progress.advance("Sentiment Analysis")
 
             analyzed_segments.append(
@@ -138,9 +135,7 @@ def run_pipeline(
                     speaker_role=speaker_role,
                     sentiment=sentiment,
                     emotion=emotion,
-                    paired_with=None,
-                )
-            )
+                    paired_with=None,))
 
         progress.complete_phase("Question Classification")
         progress.complete_phase("Sentiment Analysis")
