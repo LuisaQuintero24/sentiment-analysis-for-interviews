@@ -26,6 +26,11 @@ import sys
 import warnings
 from pathlib import Path
 
+# Filter warnings BEFORE importing modules that load pyannote
+warnings.filterwarnings("ignore", message="FP16 is not supported on CPU")
+warnings.filterwarnings("ignore", message=".*torchcodec.*", category=UserWarning)
+warnings.filterwarnings("ignore", module="pyannote.*")
+
 from rich.panel import Panel
 
 from src.config.settings import setup_logging, get_settings
@@ -33,8 +38,6 @@ from src.config.paths import get_project_paths
 from src.config.environment import setup_environment
 from src.pipeline.runner import run_pipeline
 from src.utils import cleanup_folders, console
-
-warnings.filterwarnings("ignore", message="FP16 is not supported on CPU")
 
 
 def main() -> bool:
@@ -70,8 +73,7 @@ def main() -> bool:
             audio_wav=paths.audio_wav,
             parts_dir=paths.parts_dir,
             output_path=paths.sentiment_json,
-            device="cpu",
-        )
+            device="cpu",)
 
         if result:
             logger.info("=" * 60)
