@@ -2,8 +2,6 @@
 # Project-specific ignores
 # ===========================================
 
-# Claude Code
-.claude/
 
 # FFmpeg engines (large binaries)
 engines/
