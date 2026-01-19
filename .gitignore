@@ -6,13 +6,7 @@
 # FFmpeg engines (large binaries)
 engines/
 
-# Data files (audio, intermediate, output)
-data/raw/*.wav
-data/raw/*.mp3
-data/raw/*.m4a
-data/raw/*.flac
-data/interim/
-data/output/
+
 
 # HuggingFace cache
 .cache/huggingface/
