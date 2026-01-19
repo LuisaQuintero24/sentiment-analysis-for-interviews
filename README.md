@@ -13,7 +13,7 @@ A Python pipeline for analyzing interview audio files. Automatically identifies 
 
 ## Requirements
 
-- Python 3.8+
+- Python 3.12
 - FFmpeg (for audio processing)
 - HuggingFace account with access to pyannote models
 - ~4GB disk space for ML models
@@ -46,7 +46,10 @@ choco install ffmpeg
 
 **Option B: Manual installation**
 1. Download from https://www.gyan.dev/ffmpeg/builds/
-2. Extract to `engines/` folder
+   
+2. Extract to `engines/` folder Is necessary the folder 
+   big with ffmpeg.exe, ffplay.exe, ffprobe.exe.
+
 3. The pipeline will automatically detect it
 
 ### 3. Configure HuggingFace Token
